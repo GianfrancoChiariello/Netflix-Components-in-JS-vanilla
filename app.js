@@ -35,13 +35,30 @@ function pageLogin() {
             let dividerUsers = document.querySelector(".dividerUsers")
             dividerUsers.innerHTML += `<div id=${user.id} class="users user3">
                                         <img id=${user.id} src=${user.img} alt="UserImage">
+                                        <i id=${user.id} class="fa-solid fa-trash-can"></i>
                                         <span id=${user.id}>${user.user}</span>
                                     </div>`
-        })
-
-        paginate()
+    })
+    paginate()
     }
+
+    let delet3 = document.querySelectorAll(".fa-trash-can")
     
+    let editProfile = document.querySelector(".editProfile")
+    editProfile.addEventListener("click", () => {
+        delet3.forEach(dt => {
+            dt.classList.toggle("active1")
+            dt.addEventListener("click",deleteUser)
+        })
+    })
+
+
+    function deleteUser(e) {
+        let dlt = users.find(user => user.id == e.target.id)
+        users = users.filter(item => item.id !== dlt.id)
+        localStorage.setItem("user", JSON.stringify(users)) 
+        pageLogin()
+    }
     
     let btnAdd = document.querySelector(".addProfile")
     btnAdd.addEventListener("click", () => {
@@ -72,6 +89,7 @@ function pageLogin() {
                 localStorage.setItem("user", JSON.stringify(users))
                 loadUser(dividerUser)
                 div.remove()
+                pageLogin()
             }
         })
     })
@@ -306,6 +324,8 @@ function home(user) {
                     slider.style.transition = 'all 0.5s';
                 })
                 }, false);
+
+
         }
 
         sliders()
