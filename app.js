@@ -194,7 +194,7 @@ function home(user) {
                 div.classList.remove("diverActive")
             }
 
-            fetch(`https://api.themoviedb.org/3/search/movie?api_key=65d170988df04794892b0208461d4218&query=${inputSearch.value}`)
+            fetch(`http://api.themoviedb.org/3/search/movie?api_key=65d170988df04794892b0208461d4218&query=${inputSearch.value}`)
             .then(rs => rs.json())
             .then(movies => {
                 for (const movie of movies.results) {
@@ -251,7 +251,7 @@ function home(user) {
         async function data() {
             try {
                 let rnd = Math.floor(Math.random() * 20)
-                let response = await fetch(`https://api.themoviedb.org/3/movie/popular/?api_key=65d170988df04794892b0208461d4218`)
+                let response = await fetch(`http://api.themoviedb.org/3/movie/popular/?api_key=65d170988df04794892b0208461d4218`)
                 const data = await response.json()
                 let resultados = data.results
                 console.log(resultados)
@@ -277,7 +277,7 @@ function home(user) {
                 })
             
                 let sectionOne = document.querySelector(".sectionOne")
-                sectionOne.style.backgroundImage = `Url("https://image.tmdb.org/t/p/w185/${resultados[rnd].poster_path}")`;
+                sectionOne.style.backgroundImage = `Url("http://image.tmdb.org/t/p/w185/${resultados[rnd].poster_path}")`;
             } catch (err) {
                 console.log(err);
             }
@@ -288,7 +288,7 @@ function home(user) {
     function sectionSlides() {
         
         async function sliders() {
-            let movies = await fetch("https://api.themoviedb.org/3/movie/popular/?api_key=65d170988df04794892b0208461d4218")
+            let movies = await fetch("http://api.themoviedb.org/3/movie/popular/?api_key=65d170988df04794892b0208461d4218")
             let response = await movies.json()
             
             let div = document.createElement("div")
@@ -322,7 +322,7 @@ function home(user) {
                 const carousel = document.querySelector('.carousel');
                 const slider = document.querySelector('.slider');
                 
-                let getImage = "https://image.tmdb.org/t/p/w185/"
+                let getImage = "http://image.tmdb.org/t/p/w185/"
 
 
                 
