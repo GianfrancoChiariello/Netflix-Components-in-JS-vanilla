@@ -39,6 +39,10 @@ function pageLogin() {
                                     </div>`
     })
     paginate()
+    } else {
+        let f = document.querySelector(".dividerUsers")
+        console.log(f)
+        f.innerHTML = `<h1 class="h11">No hay usuarios</h1>`
     }
 
     let delet3 = document.querySelectorAll(".fa-trash-can")
