@@ -44,6 +44,7 @@ button {
             display: flex;
             flex-direction: column;
             position: relative;
+            cursor: pointer;
 
 
 
@@ -185,8 +186,20 @@ button {
         justify-content: space-between;
         align-items: center;
 
+        .search {
+            display: none;
+        }
+
+        .activeSearch {
+            display: block;
+            border: 1px solid white;
+            border-radius: .2rem;
+            padding: 0 .3rem;
+        }
+
         i {
             margin: 0 .6rem;
+            cursor: pointer;
         }
 
         img {
@@ -224,6 +237,7 @@ button {
         margin: 1rem;
         display: flex;
         align-items: center;
+        cursor: pointer;
 
         h1 {
             margin: 0 .5rem;
@@ -380,3 +394,28 @@ button {
         width: 14rem;
     }
   }
+
+.diver {
+    padding: 1rem;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 3.5rem;
+    background-color: black;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: .5rem;
+    }
+}
+
+.diverActive {
+    display: none;
+}

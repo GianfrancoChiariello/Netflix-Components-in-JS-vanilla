@@ -2,7 +2,6 @@ let body = document.body
 let users = []
 
 window.addEventListener("DOMContentLoaded",pageLogin)
-
 // Variables
 
 
@@ -136,27 +135,28 @@ function home(user) {
                                 </div>
                                 
                                 <ul class="ul">
-                                    <a href="">
-                                        <li>Inicio</li>
+                                    <a href="#">
+                                        <li class="home">Inicio</li>
                                     </a>
-                                    <a href="">
+                                    <a href="#">
                                         <li>Series</li>
                                     </a>
-                                    <a href="">
+                                    <a href="#">
                                         <li>Peliculas</li>
                                     </a>
-                                    <a href="">
+                                    <a href="#">
                                         <li>Novedades Populares</li>
                                     </a>
-                                    <a href="">
+                                    <a href="#">
                                         <li>Mi lista</li>
                                     </a>
-                                    <a href="">
+                                    <a href="#">
                                         <li>Explorar por idioma</li>
                                     </a>
                                 </ul>
                             </nav>
                             <div class="user">
+                            <input type="text" placeholder="Buscar" class="search">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                                 <i class="fa-solid fa-bell"></i>
                                 <div class="profiles">
@@ -167,6 +167,45 @@ function home(user) {
                                 </div>
                             </div>
                         </header>`
+
+        let home = document.querySelector(".home")
+        let inputSearch = document.querySelector(".search")
+        let search = document.querySelector(".fa-magnifying-glass")
+        search.addEventListener("click", () => {
+            inputSearch.classList.toggle("activeSearch")
+        })
+
+        let div = document.createElement("div")
+        div.classList.add("diver")
+
+        inputSearch.addEventListener("change", () => {
+            let getImage = "https://image.tmdb.org/t/p/w185/"
+            
+            
+            div.innerHTML = ""
+
+            if (inputSearch.value == "") {
+                div.classList.add("diverActive")
+            } else {
+                div.classList.remove("diverActive")
+            }
+
+            fetch(`https://api.themoviedb.org/3/search/movie?api_key=65d170988df04794892b0208461d4218&query=${inputSearch.value}`)
+            .then(rs => rs.json())
+            .then(movies => {
+                for (const movie of movies.results) {
+                    div.innerHTML += `<div>
+                                        <h1>${movie.title}</h1>
+                                        <img src=${getImage + movie.backdrop_path}>
+                                        </div>`
+                    body.appendChild(div)
+                }
+            })
+        })
+
+
+
+
 
         let arrow = document.querySelector(".fa-caret-down")
         let allProfiles = document.querySelector(".allProfiles")
@@ -200,6 +239,8 @@ function home(user) {
                 home(targ)
             })
         })
+
+
     }
 
     function sectionOne() {
@@ -212,6 +253,7 @@ function home(user) {
                 console.log(resultados)
 
                 let div = document.createElement("div")
+                div.classList.add("divv");
                 div.innerHTML += `<section class="sectionOne">
                                     <div class="left">
                                         <h1>${resultados[rnd].title}</h1>
@@ -223,6 +265,7 @@ function home(user) {
                                     </div>
                                 </section>`
                 body.appendChild(div)
+
 
                 let info = document.querySelector(".info")
                 info.addEventListener("click", () => {
@@ -245,6 +288,7 @@ function home(user) {
             let response = await movies.json()
             
             let div = document.createElement("div")
+            div.classList.add("divSlides")
 
                 div.innerHTML += `<div class="container">
                                     <span>Tendencias</span>
